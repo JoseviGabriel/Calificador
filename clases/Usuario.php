@@ -18,6 +18,7 @@ class Usuario {
     private $login;
     private $clave;
     private $activo;
+    private $proyecto;
     
     function __construct($nombre, $apellidos, $telefono, $login, $clave, $activo) {
         $this->nombre = $nombre;
@@ -51,6 +52,10 @@ class Usuario {
     function getActivo() {
         return $this->activo;
     }
+    
+    function getProyecto() {
+        return $this->proyecto;
+    }
 
     function setNombre($nombre) {
         $this->nombre = $nombre;
@@ -74,5 +79,9 @@ class Usuario {
 
     function setActivo($activo) {
         $this->activo = $activo;
+    }
+
+    function setProyecto($proyecto) {
+        $this->proyecto = $proyecto;
     }
 }
