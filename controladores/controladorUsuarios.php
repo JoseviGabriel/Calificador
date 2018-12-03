@@ -6,6 +6,7 @@ if (isset($_REQUEST["accion"])) {
     $accion = str_replace(" ", "", $accion);
     
     switch($accion){
-        
+        case "REGISTRAR":
+        break;
     }
 }

@@ -10,7 +10,7 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <form action="controlador.php">
+        <form action="controladores/controladorUsuarios.php">
             <table>
                 <tr>
                     <td><label>Nombre: </label></td>
@@ -32,10 +32,12 @@ and open the template in the editor.
                     <td><label>Clave: </label></td>
                     <td><input type="text" name="clave" /></td>
                 </tr>
+                <tr>
+                    <td><input type="submit" name="accion" value="Registrar"/></td>
+                </tr>
             </table>
         </form>
         <?php
-            
         ?>
     </body>
 </html>
