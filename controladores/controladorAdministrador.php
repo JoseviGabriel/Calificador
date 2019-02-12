@@ -13,10 +13,11 @@ if (isset($_REQUEST["accion"])) {
             $resultado=administradorDB::acceder($_REQUEST["usuario"], $_REQUEST["clave"]);
             if ($resultado){
                 $_SESSION["administrador"]=new Administrador($_REQUEST["usuario"],$_REQUEST["clave"]);
-                header("Location:../menuAdministrador.php");
+                $url="Location:../menuAdministrador.php";
             }else{
-                header("Location:../administrador.php?mensaje=Error%20Loggin");
+                $url="Location:../administrador.php?mensaje=Error%20Loggin";
             }
+            header(url);
         break;
     }
 }
