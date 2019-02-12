@@ -1,9 +1,6 @@
 <?php
+require_once "conectarDB.php";
 
-define("HOST", "p:localhost");
-define("USUARIO", "root");
-define("CONTRASENIA", "");
-define("DB", "calificador");
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -15,22 +12,42 @@ define("DB", "calificador");
  *
  * @author Usuario
  */
-class usuarioDB {
-    private static $conexion;
-    private static $consIdentificacion;
+class usuarioDB extends conectarDB {
+
+    protected static function conectar() {
+        parent::conectar();
+    }
     
-    private static function conectar() {
-        self::$conexion = new mysqli(HOST, USUARIO, CONTRASENIA, DB);
-        if (self::$conexion->connect_errno != NULL) {
-            die("Error, al conectar con la base de datos: " . self::$conexion->connect_error);
-        }
+    public static function registrar($nombre, $apellidos, $telefono, $usuario,$clave){
+        self::conectar();
+        $clave= md5($clave);
+        $sql="INSERT INTO usuarios(login,clave,nombre,apellidos,telefono) VALUES('$usuario','$clave','$nombre','$apellidos','$telefono')";
+        parent::$conexion->query($sql);
+        $ok = parent::$conexion->errno;
+        parent::$conexion->close();
+        return $ok;
+    }
+    
+     public static function acceder($usuario,$clave){
+         $resultado=false;
+         self::conectar();
+         $clave= md5($clave);
+         $sql="SELECT * FROM usuarios WHERE login='$usuario' AND clave='$clave'";
+         $consulta= parent::$conexion->query($sql);
+         //Contamos cuantas filas han salido si ha salido 0 es false y si sale 1 es true
+         $valor=mysqli_num_rows($consulta);
+         if ($valor===1){
+             $resultado=true;
+         }
+         parent::$conexion->close();
+         return $resultado;
     }
     
     public static function leerUsuarios() {
         $usuarios = [];
         self::conectar();
         $sql = "SELECT * FROM usuarios";
-        $consulta = self::$conexion->query($sql);
+        $consulta = parent::$conexion->query($sql);
 
         $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
@@ -39,7 +56,8 @@ class usuarioDB {
             $tupla = $consulta->fetch_array();
         }
         $consulta->free();
-        self::$conexion->close();
+        parent::$conexion->close();
         return $usuarios;
     }
+
 }

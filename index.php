@@ -10,8 +10,20 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
-        <?php
-            
-        ?>
+        <form action="controladores/controladorUsuarios.php">
+            <table>
+                <tr>
+                    <td><label>Login: </label></td>
+                    <td><input type="text" name="login" /></td>
+                </tr>
+                <tr>
+                    <td><label>Clave: </label></td>
+                    <td><input type="password" name="clave" /></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" name="accion" value="Acceder"/></td>
+                </tr>
+            </table>
+        </form>
     </body>
 </html>

@@ -30,7 +30,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <td><label>Clave: </label></td>
-                    <td><input type="text" name="clave" /></td>
+                    <td><input type="password" name="clave" /></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="accion" value="Registrar"/></td>
@@ -38,6 +38,9 @@ and open the template in the editor.
             </table>
         </form>
         <?php
+            if(isset($_REQUEST["mensaje"])){
+                echo $_REQUEST["mensaje"];
+            }
         ?>
     </body>
 </html>
