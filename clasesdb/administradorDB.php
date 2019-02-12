@@ -25,7 +25,7 @@ class administradorDB extends conectarDB{
          $consulta= parent::$conexion->query($sql);
          //Contamos cuantas filas han salido si ha salido 0 es false y si sale 1 es true
          $valor=mysqli_num_rows($consulta);
-         if ($valor===1){
+         if ($valor==1){
              $resultado=true;
          }
          parent::$conexion->close();

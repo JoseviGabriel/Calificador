@@ -1,4 +1,7 @@
 <?php
+session_start();
+require_once '../clasesdb/administradorDB.php';
+require_once '../clases/Administrador.php';
 
 if (isset($_REQUEST["accion"])) {
     $accion = $_REQUEST["accion"];
@@ -7,7 +10,13 @@ if (isset($_REQUEST["accion"])) {
     
     switch($accion){
         case "ACCEDER":
-        
+            $resultado=administradorDB::acceder($_REQUEST["usuario"], $_REQUEST["clave"]);
+            if ($resultado){
+                $_SESSION["administrador"]=new Administrador($_REQUEST["usuario"],$_REQUEST["clave"]);
+                header("Location:../menuAdministrador.php");
+            }else{
+                header("Location:../administrador.php?mensaje=Error%20Loggin");
+            }
         break;
     }
 }
