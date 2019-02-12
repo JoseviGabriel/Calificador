@@ -19,5 +19,9 @@ if (isset($_REQUEST["accion"])) {
             }
             header($url);
         break;
+        
+        case "CREAREVENTO":
+            
+        break;
     }
 }

@@ -18,7 +18,7 @@ class usuarioDB extends conectarDB {
         parent::conectar();
     }
     
-    public static function registrar($nombre, $apellidos, $telefono, $usuario,$clave){
+    public static function registrar($nombre, $apellidos, $telefono, $usuario, $clave){
         self::conectar();
         $clave= md5($clave);
         $sql="INSERT INTO usuarios(login,clave,nombre,apellidos,telefono) VALUES('$usuario','$clave','$nombre','$apellidos','$telefono')";
@@ -51,7 +51,7 @@ class usuarioDB extends conectarDB {
 
         $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
-            $usuario = new Usuario($tupla["nombre"], $tupla["apellidos"], $tupla["login"], $tupla["clave"], $tupla["activo"]);
+            $usuario = new Usuario($tupla["nombre"], $tupla["apellidos"], $tupla["login"], $tupla["clave"],$tupla["telefono"], $tupla["activo"]);
             array_push($usuarios, $usuario);
             $tupla = $consulta->fetch_array();
         }
