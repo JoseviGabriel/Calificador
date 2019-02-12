@@ -17,7 +17,7 @@ if (isset($_REQUEST["accion"])) {
             }else{
                 $url="Location:../administrador.php?mensaje=Error%20Loggin";
             }
-            header(url);
+            header($url);
         break;
     }
 }
