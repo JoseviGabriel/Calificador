@@ -11,8 +11,3 @@ if (isset($_REQUEST["accion"])) {
         break;
     }
 }
-
-
-
-
-?>

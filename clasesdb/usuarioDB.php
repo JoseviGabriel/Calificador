@@ -26,10 +26,10 @@ class usuarioDB {
         }
     }
     
-    public static function leer($tabla) {
+    public static function leerUsuarios() {
         $usuarios = [];
         self::conectar();
-        $sql = "SELECT * FROM $tabla";
+        $sql = "SELECT * FROM usuarios";
         $consulta = self::$conexion->query($sql);
 
         $tupla = $consulta->fetch_array();
