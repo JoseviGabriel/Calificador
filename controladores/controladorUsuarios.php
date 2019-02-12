@@ -7,6 +7,7 @@ if (isset($_REQUEST["accion"])) {
     
     switch($accion){
         case "REGISTRAR":
+            
         break;
     }
 }
