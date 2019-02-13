@@ -32,7 +32,7 @@ if (isset($_REQUEST["accion"])) {
                 $_SESSION["usuario"]=new Usuario($login, NULL, NULL, NULL, NULL, NULL);
                 $url = "menuUsuarios.php";
             } else {
-                $url = "index.php";
+                $url = "usuarios.php";
             }
             header("Location: ../".$url);
             break;
