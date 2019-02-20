@@ -35,5 +35,12 @@ class usuarioHTML {
 
         <?php
     }
+    
+    
+    public static function escribirSelects($usuario){
+        ?>
+        <option><?php echo $usuario->getLogin();?></option>
+        <?php
+    }
 
 }

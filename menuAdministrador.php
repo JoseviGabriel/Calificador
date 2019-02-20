@@ -1,13 +1,26 @@
 <?php
+require_once 'clases/Usuario.php';
+require_once 'clasesdb/usuarioDB.php';
+require_once 'clasesrender/UsuarioHTML.php';
 session_start();
 
 if (!isset($_SESSION["administrador"]))
     header("Location: administrador.php");
+
+
+$usuariossinproyecto=usuarioDB::leerUsuariosSinProyecto();
+
 ?>
 <html>
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <style>
+            form{
+                display: none;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="menuAdministrador.js"></script>
     </head>
     <body>
@@ -21,16 +34,56 @@ if (!isset($_SESSION["administrador"]))
             </article>
             <article>
                 Gestion Eventos
-                <input type="submit" name="accion" value="Gestion Eventos"/>
+                <input type="button" name="accion" value="Gestion Eventos"/>
             </article>
             <article>
                 Gestion Usuarios
-                <input type="submit" name="accion" value="Gestion Usuarios"/>
+                <input type="button" name="accion" value="Gestion Usuarios"/>
+            </article>
+            <article>
+                Gestion Proyectos
+                <input type="button" name="accion" id="crearProyectos" value="Gestion Proyectos"/>
             </article>
         </section>
-        <footer>
-            Pie
-        </footer>
+       
+        
+        
+        <form id="formCrearProyecto" action="controladores/controladorAdministrador.php" enctype=”multipart/form-data”>
+            <table>
+                <tr>
+                    <td><label>Titulo: </label></td>
+                    <td><input type="text" name="titulo" /></td>
+                </tr>
+                <tr>
+                    <td><label>Descripcion Breve: </label></td>
+                    <td><input type="text" name="descripcionbreve" /></td>
+                </tr>
+                <tr>
+                    <td><label>Descripcion Detallada: </label></td>
+                    <td><textarea  name="descripcionDetallada" ></textarea></td>
+                </tr>
+              
+                <tr>
+                    <td><label> Usuarios</label></td>
+                    <td><select multiple name="usuarios[]">
+                           <?php
+                           foreach ($usuariossinproyecto as $usuario) {
+                                echo usuarioHTML::escribirSelects($usuario);
+                            }
+                           ?>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td><label>Archivos</label></td>
+                    <td><input type="file" class="form-control" id="archivo[]" name="archivo[]" multiple></td>
+                </tr>
+                
+                <tr>
+                    <td><input type="submit" name="accion" value="Crear Proyecto"/></td>
+                </tr>
+
+            </table>
+        </form>
 
         <form id="formCrearEvento" action="controladores/controladorAdministrador.php">
             <table>
@@ -76,6 +129,11 @@ if (!isset($_SESSION["administrador"]))
 
             </table>
         </form>
+        
+         <footer>
+            Pie
+        </footer>
+        
 
     </body>
 </html>
