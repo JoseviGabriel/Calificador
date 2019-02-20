@@ -17,15 +17,21 @@ if (isset($_REQUEST["accion"])) {
             }else{
                 $url="Location:../administrador.php?mensaje=Error%20Loggin";
             }
-            header($url);
         break;
         
         case "CREAREVENTO":
-            
+            $ok = administradorDB::crearEvento($_REQUEST);
+            if($ok == 0){
+                echo "Evento creado correctamente";
+            } else {
+                echo $ok;
+            }
+            $url = "Location:../menuAdministrador.php";
         break;
     
     
     }
+    header($url);
 }
 
 function subirFicheros($nombreproyecto){

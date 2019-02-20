@@ -106,7 +106,7 @@ $usuariossinproyecto=usuarioDB::leerUsuariosSinProyecto();
                 <tr>
                     <td><label>Apartados a evaluar: </label></td>
                     <td><select multiple name="apartados[]">
-                            <option>Diseño</option>
+                            <option>Disenio</option>
                             <option>Codificacion</option>
                             <option>Diagramas</option>
                             <option>Modelo Entidad Relacion</option>
@@ -115,13 +115,13 @@ $usuariossinproyecto=usuarioDB::leerUsuariosSinProyecto();
                 </tr>
                 <tr>
                     <td><label>Calificacion unica: </label></td>
-                    <td>Si<input type="radio" name="cUnica" value="si"/></td>
-                    <td>No<input type="radio" name="cUnica" value="no"/></td>
+                    <td>Si<input type="radio" name="cUnica" value="1"/></td>
+                    <td>No<input type="radio" name="cUnica" value="0"/></td>
                 </tr>
                 <tr>
                     <td><label>Abierto para calificacion: </label></td>
-                    <td>Si<input type="radio" name="cAbierto" value="si"/></td>
-                    <td>No<input type="radio" name="cAbierto" value="no"/></td>
+                    <td>Si<input type="radio" name="cAbierto" value="1"/></td>
+                    <td>No<input type="radio" name="cAbierto" value="0"/></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="accion" value="Crear Evento"/></td>
