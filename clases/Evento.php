@@ -22,7 +22,7 @@ class Evento {
     private $proyectos = [];
     
     
-    function __construct($titulo, $descripcion, $fecha_apertura, $fecha_cierre, $apartados, $calificacion, $abierto, $proyectos){
+    function __construct($titulo, $descripcion, $fecha_apertura, $fecha_cierre, $apartados, $calificacion, $abierto){
         $this->titulo = $titulo;
         $this->descripcion = $descripcion;
         $this->fecha_apertura = $fecha_apertura;
@@ -30,9 +30,16 @@ class Evento {
         $this->apartados = $apartados;
         $this->calificacion = $calificacion;
         $this->abierto = $abierto;
-        $this->proyectos = $proyectos;
     }
     
+    function getProyectos() {
+        return $this->proyectos;
+    }
+
+    function addProyecto($proyecto) {
+        array_push($this->proyectos, $proyecto);
+    }
+
     function getTitulo() {
         return $this->titulo;
     }
