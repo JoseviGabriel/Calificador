@@ -22,6 +22,7 @@ and open the template in the editor.
                 </tr>
                 <tr>
                     <td><input type="submit" name="accion" value="Acceder"/></td>
+                    <td><input type="submit" name="accion" value="Registro"/></td>
                 </tr>
             </table>
         </form>

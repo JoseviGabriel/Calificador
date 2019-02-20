@@ -10,6 +10,8 @@ if (isset($_REQUEST["accion"])) {
     $accion = str_replace(" ", "", $accion);
 
     switch ($accion) {
+        case "REGISTRO": $url = "registro.php";
+            break;
         case "REGISTRAR": $nombre = $_REQUEST["nombre"];
             $apellidos = $_REQUEST["apellidos"];
             $telefono = $_REQUEST["telefono"];
@@ -23,7 +25,7 @@ if (isset($_REQUEST["accion"])) {
                 $mensaje = "Usuario registrado, esperando activación del administrador";
                 $url = "registro.php?mensaje=".$mensaje;
             }
-            header("Location: ../".$url);
+            
             break;
         case "ACCEDER": $login = $_REQUEST["login"];
             $clave = $_REQUEST["clave"];
@@ -34,7 +36,7 @@ if (isset($_REQUEST["accion"])) {
             } else {
                 $url = "usuarios.php";
             }
-            header("Location: ../".$url);
             break;
     }
+     header("Location: ../".$url);
 }
