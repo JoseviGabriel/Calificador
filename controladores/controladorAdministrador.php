@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once '../clasesdb/administradorDB.php';
+require_once '../clasesdb/eventoDB.php';
 require_once '../clases/Administrador.php';
 
 if (isset($_REQUEST["accion"])) {
@@ -20,7 +21,7 @@ if (isset($_REQUEST["accion"])) {
         break;
         
         case "CREAREVENTO":
-            $ok = administradorDB::crearEvento($_REQUEST);
+            $ok = eventoDB::crearEvento($_REQUEST);
             if($ok == 0){
                 echo "Evento creado correctamente";
             } else {
