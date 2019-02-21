@@ -9,5 +9,7 @@ function init(){
         $("#formCrearProyecto").toggle( "slow" );
     });
     
-    
+    $("#gestionUsuarios").click(function() {
+        $("#formGestionUsuarios").toggle( "slow" );
+    });
 }

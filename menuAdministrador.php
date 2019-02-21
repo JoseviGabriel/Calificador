@@ -8,7 +8,7 @@ if (!isset($_SESSION["administrador"]))
     header("Location: administrador.php");
 
 
-$usuariossinproyecto=usuarioDB::leerUsuariosSinProyecto();
+$usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
 ?>
 <html>
     <head>
@@ -37,7 +37,7 @@ $usuariossinproyecto=usuarioDB::leerUsuariosSinProyecto();
             </article>
             <article>
                 Gestion Usuarios
-                <input type="button" name="accion" value="Gestion Usuarios"/>
+                <input type="button" name="accion" id="gestionUsuarios" value="Gestion Usuarios"/>
             </article>
             <article>
                 Gestion Proyectos
@@ -61,22 +61,22 @@ $usuariossinproyecto=usuarioDB::leerUsuariosSinProyecto();
                     <td><label>Descripcion Detallada: </label></td>
                     <td><textarea  name="descripcionDetallada" ></textarea></td>
                 </tr>
-              
+
                 <tr>
                     <td><label> Usuarios</label></td>
                     <td><select multiple name="usuarios[]">
-                           <?php
-                           foreach ($usuariossinproyecto as $usuario) {
+                            <?php
+                            foreach ($usuariossinproyecto as $usuario) {
                                 echo usuarioHTML::escribirSelects($usuario);
                             }
-                           ?>
+                            ?>
                         </select></td>
                 </tr>
                 <tr>
                     <td><label>Archivos</label></td>
-                    <td><input type="file" name="archivo" multiple></td>
+                    <td><input type="file" class="form-control" name="archivo[]" multiple></td>
                 </tr>
-                
+
                 <tr>
                     <td><input type="submit" name="accion" value="Crear Proyecto"/></td>
                 </tr>
@@ -128,11 +128,21 @@ $usuariossinproyecto=usuarioDB::leerUsuariosSinProyecto();
 
             </table>
         </form>
-        
-         <footer>
+
+        <form id="formGestionUsuarios" action="controladores/controladorAdministrador.php">
+            <table>
+                <?php
+                require_once "verUsuarios.php";
+                ?>
+                <input type="submit" name="accion" value="Activar"/>
+                <input type="submit" name="accion" value="Desactivar"/>
+            </table>
+        </form>
+
+        <footer>
             Pie
         </footer>
-        
+
 
     </body>
 </html>

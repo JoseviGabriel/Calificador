@@ -19,8 +19,8 @@ class usuarioHTML {
             <td><?php echo $usuario->getLogin() ?></td>
             <td><?php echo $usuario->getNombre() ?></td>
             <td><?php echo $usuario->getApellidos() ?></td>
-            <td><?php echo $usuario->getTelefono() ?></td>
-            <td><?php echo $usuario->getClave() ?></td>  
+            <td><?php echo $usuario->getClave() ?></td>
+            <td><?php echo $usuario->getTelefono() ?></td>  
             <td><?php echo $usuario->getActivo() ?></td>
             <td><?php echo $usuario->getProyecto() ?></td>
             <?php
