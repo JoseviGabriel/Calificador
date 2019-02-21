@@ -74,7 +74,7 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
                 </tr>
                 <tr>
                     <td><label>Archivos</label></td>
-                    <td><input type="file" class="form-control" name="archivo[]" multiple></td>
+                    <td><input type="file" class="form-control" name="archivo[]" multiple /></td>
                 </tr>
 
                 <tr>

@@ -36,12 +36,27 @@ class proyectoDB extends conectarDB{
             }
         self::conectar();
         $sql="INSERT INTO proyectos(titulo,descripcionBreve,descripcionDetallada,usuarios) VALUES('$titulo','$descripcionbreve','$descripciondetallada','$cadenausuarios')";
+        $idproyectoactual=self::obtenerIdUltimoProyecto();
+        $usuarios = explode(":", $cadenausuarios);
+        foreach ($usuarios as $usuario){
+            self::actualizarUsuariosProyecto($usuario, $idproyectoactual[0]+1);
+        }
         parent::$conexion->query($sql);
         $ok = parent::$conexion->errno;
         parent::$conexion->close();
         return $ok;
-            
         
-        
+    }
+    
+    private static function obtenerIdUltimoProyecto(){
+        $sql="SELECT MAX(id) FROM proyectos";
+        $consulta=parent::$conexion->query($sql);
+        return $consulta->fetch_array();
+    }
+    
+    private static function actualizarUsuariosProyecto($usuario,$id){
+        self::conectar();
+        $sql = "UPDATE usuarios SET proyecto = '$id' WHERE login = '$usuario'";
+        parent::$conexion->query($sql);
     }
 }
