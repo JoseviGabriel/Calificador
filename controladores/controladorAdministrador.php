@@ -2,6 +2,7 @@
 
 session_start();
 require_once '../clasesdb/administradorDB.php';
+require_once '../clasesdb/usuarioDB.php';
 require_once '../clasesdb/eventoDB.php';
 require_once '../clases/Administrador.php';
 
@@ -27,6 +28,21 @@ if (isset($_REQUEST["accion"])) {
                 echo "Evento creado correctamente";
             } else {
                 echo $ok;
+            }
+            $url = "Location:../menuAdministrador.php";
+            break;
+        case "ACTIVAR":
+            $checkBoxes = $_REQUEST["activar"];
+            var_dump($checkBoxes);
+            foreach($checkBoxes as $valor){
+                usuarioDB::activarUsuario($valor);
+            }
+            $url = "Location:../menuAdministrador.php";
+            break;
+        case "DESACTIVAR":
+            $checkBoxes = $_REQUEST["activar"];
+            foreach($checkBoxes as $valor){
+                usuarioDB::desactivarUsuario($valor);
             }
             $url = "Location:../menuAdministrador.php";
             break;

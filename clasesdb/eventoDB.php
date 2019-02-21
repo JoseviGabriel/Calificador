@@ -1,4 +1,5 @@
 <?php
+
 require_once 'conectarDB.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,12 +13,12 @@ require_once 'conectarDB.php';
  * @author josev
  */
 class eventoDB extends conectarDB {
-    
+
     protected static function conectar() {
         parent::conectar();
     }
-    
-    public static function crearEvento($rq){
+
+    public static function crearEvento($rq) {
         $titulo = $rq["titulo"];
         $descripcion = $rq["descripcion"];
         $fechaApertura = $rq["fecha_a"];
@@ -25,20 +26,25 @@ class eventoDB extends conectarDB {
         $arrayApartados = $rq["apartados"];
         $cUnica = $rq["cUnica"];
         $cAbierto = $rq["cAbierto"];
-        $apartados = "";
-        
-        foreach($arrayApartados as $apartado){
-            $apartados = $apartados.$apartado.":";
+        $cadena = "";
+        $limite = sizeof($arrayApartados);
+        foreach ($arrayApartados as $clave => $valor) {
+            if ($clave == $limite - 1) {
+                $cadena .= $valor;
+            } else {
+                $cadena .= $valor . ":";
+            }
         }
-        
+
         self::conectar();
         $sql = "INSERT INTO eventos(titulo, descripcion, fechaApertura, fechaCierre, apartados, calificacion, abierto) "
-                . "VALUES('$titulo', '$descripcion', '$fechaApertura', '$fechaCierre', '$apartados', '$cUnica', '$cAbierto')";
-        
+                . "VALUES('$titulo', '$descripcion', '$fechaApertura', '$fechaCierre', '$cadena', '$cUnica', '$cAbierto')";
+
         $consulta = parent::$conexion->query($sql);
-        
+
         $ok = parent::$conexion->errno;
         parent::$conexion->close();
         return $ok;
     }
+
 }

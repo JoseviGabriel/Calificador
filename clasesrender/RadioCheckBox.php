@@ -19,6 +19,7 @@ class RadioCheckBox extends Input {
         parent::Input($type, $name, $value);
         $this->etiqueta=$etiqueta;        
     }
+    
     public function dibujar($i) {
         
         return parent::dibujar($i)."<label>$this->etiqueta</label>";                
