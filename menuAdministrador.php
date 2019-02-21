@@ -44,10 +44,10 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
                 <input type="button" name="accion" id="crearProyectos" value="Gestion Proyectos"/>
             </article>
         </section>
-       
-        
-        
-        <form id="formCrearProyecto" method="post" action="controladores/controladorAdministrador.php" enctype=”multipart/form-data”>
+
+
+
+        <form id="formCrearProyecto" action="controladores/controladorAdministrador.php" enctype=”multipart/form-data”>
             <table>
                 <tr>
                     <td><label>Titulo: </label></td>
