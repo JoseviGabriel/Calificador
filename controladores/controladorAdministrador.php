@@ -35,11 +35,11 @@ if (isset($_REQUEST["accion"])) {
             
             
         case "CREARPROYECTO":
-          // $url = "Location:../menuAdministrador.php";
+            $url = "Location:../menuAdministrador.php";
             $ok=proyectoDB::insertarProyecto($_REQUEST);
-            //if ($ok == 0){
-             //   subirFicheros($_REQUEST["titulo"]);
-           // }
+            if ($ok == 0){
+                subirFicheros($_REQUEST["titulo"]);
+            }
             break;
         case "ACTIVAR":
             $checkBoxes = $_REQUEST["activar"];
