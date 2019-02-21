@@ -31,6 +31,19 @@ if (isset($_REQUEST["accion"])) {
             }
             $url = "Location:../menuAdministrador.php";
             break;
+            
+            
+        case "CREARPROYECTO":
+            // $ok=proyectoDB::insertarProyecto($_REQUEST);
+            //if ($ok == 0){
+            var_dump($_FILES["archivo"]);
+            // subirFicheros($_REQUEST["titulo"]);
+            //   $url = "Location:../menuAdministrador.php";
+            //}
+            //$cadena="";
+
+
+            break;
         case "ACTIVAR":
             $checkBoxes = $_REQUEST["activar"];
             var_dump($checkBoxes);
