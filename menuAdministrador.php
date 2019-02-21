@@ -47,7 +47,7 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
 
 
 
-        <form id="formCrearProyecto" action="controladores/controladorAdministrador.php" enctype=”multipart/form-data”>
+        <form id="formCrearProyecto" action="controladores/controladorAdministrador.php" method="post" enctype="multipart/form-data">
             <table>
                 <tr>
                     <td><label>Titulo: </label></td>
@@ -74,7 +74,7 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
                 </tr>
                 <tr>
                     <td><label>Archivos</label></td>
-                    <td><input type="file" class="form-control" name="archivo[]" multiple></td>
+                    <td><input type="file" class="form-control" name="archivo[]" multiple /></td>
                 </tr>
 
                 <tr>

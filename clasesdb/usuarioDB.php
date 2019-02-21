@@ -65,7 +65,7 @@ class usuarioDB extends conectarDB {
     public static function leerUsuariosSinProyecto() {
         $usuarios = [];
         self::conectar();
-        $sql = "SELECT * FROM usuarios WHERE proyecto IS NULL";
+        $sql = "SELECT * FROM usuarios WHERE proyecto IS NULL AND activo=1";
         $consulta = parent::$conexion->query($sql);
         //Contamos cuantas filas han salido si ha salido 0 es false y si sale 1 es true
         $tupla = $consulta->fetch_array();
