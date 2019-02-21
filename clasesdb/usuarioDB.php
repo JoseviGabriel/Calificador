@@ -52,8 +52,7 @@ class usuarioDB extends conectarDB {
         $tupla = $consulta->fetch_array();
         
         while ($tupla != NULL) {
-            $usuario = new Usuario($tupla["nombre"], $tupla["apellidos"], $tupla["login"], $tupla["clave"],$tupla["telefono"], $tupla["activo"]);
-            array_push($usuarios, $usuario);
+            $usuario = new Usuario($tupla["login"],$tupla["nombre"], $tupla["apellidos"],$tupla["telefono"],$tupla["clave"],$tupla["activo"]);            array_push($usuarios, $usuario);
             $tupla = $consulta->fetch_array();
         }
         $consulta->free();
@@ -62,13 +61,13 @@ class usuarioDB extends conectarDB {
     }
     
     public static function leerUsuariosSinProyecto(){
+        $usuarios = [];
          self::conectar();
-         $sql="SELECT * FROM usuarios WHERE proyecto IS NULL";
+         $sql="SELECT * FROM usuarios WHERE proyecto IS NULL AND activo=1";
          $consulta= parent::$conexion->query($sql);
          //Contamos cuantas filas han salido si ha salido 0 es false y si sale 1 es true
          $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
-            $usuarios = [];
             $usuario = new Usuario($tupla["login"],$tupla["nombre"], $tupla["apellidos"],$tupla["telefono"],$tupla["clave"],$tupla["activo"]);
             array_push($usuarios, $usuario);
             $tupla = $consulta->fetch_array();

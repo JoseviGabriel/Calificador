@@ -2,6 +2,7 @@
 session_start();
 require_once '../clasesdb/administradorDB.php';
 require_once '../clasesdb/eventoDB.php';
+require_once '../clasesdb/proyectoDB.php';
 require_once '../clases/Administrador.php';
 
 if (isset($_REQUEST["accion"])) {
@@ -29,6 +30,18 @@ if (isset($_REQUEST["accion"])) {
             }
             $url = "Location:../menuAdministrador.php";
         break;
+        
+        case "CREARPROYECTO":
+           // $ok=proyectoDB::insertarProyecto($_REQUEST);
+            //if ($ok == 0){
+            var_dump($_FILES["archivo"]);
+               // subirFicheros($_REQUEST["titulo"]);
+             //   $url = "Location:../menuAdministrador.php";
+            //}
+            //$cadena="";
+            
+                        
+        break;
     
     
     }
@@ -44,7 +57,7 @@ function subirFicheros($nombreproyecto){
 			$filename = $_FILES["archivo"]["name"][$key]; //Obtenemos el nombre original del archivo
 			$source = $_FILES["archivo"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
 			
-			$directorio = '../proyectos'.$nombreproyecto.'/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
+			$directorio = '../proyectos/'.$nombreproyecto.'/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
 			
 			//Validamos si la ruta de destino existe, en caso de no existir la creamos
 			if(!file_exists($directorio)){
