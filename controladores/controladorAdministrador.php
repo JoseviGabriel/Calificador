@@ -34,9 +34,8 @@ if (isset($_REQUEST["accion"])) {
         case "CREARPROYECTO":
             // $ok=proyectoDB::insertarProyecto($_REQUEST);
             //if ($ok == 0){
-            var_dump($_FILES["archivo"]);
-            // subirFicheros($_REQUEST["titulo"]);
-            //   $url = "Location:../menuAdministrador.php";
+            subirFicheros($_REQUEST["titulo"]);
+            $url = "Location:../menuAdministrador.php";
             //}
             //$cadena="";
             break;
@@ -67,7 +66,7 @@ function subirFicheros($nombreproyecto) {
             $filename = $_FILES["archivo"]["name"][$key]; //Obtenemos el nombre original del archivo
             $source = $_FILES["archivo"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
 
-            $directorio = '../proyectos' . $nombreproyecto . '/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
+            $directorio = '../proyectos/' . $nombreproyecto . '/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
             //Validamos si la ruta de destino existe, en caso de no existir la creamos
             if (!file_exists($directorio)) {
                 mkdir($directorio, 0777) or die("No se puede crear el directorio de extracci&oacute;n");
