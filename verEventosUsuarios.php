@@ -12,7 +12,6 @@
     <th>Calificacion</th>
     <th>Abierto</th>
     <th>Proyectos</th>
-    <th colspan="3">Acciones</th>
 </tr>
 <?php
 $eventos = eventoDB::obtenerEventos();
@@ -26,6 +25,6 @@ foreach ($eventos as $evento) {
     $form->addInput($hidden);
     array_push($acciones, $form);
 
-    echo UsuarioHTML::vistaEvento($evento, $acciones, $evento->getId());
+    echo UsuarioHTML::vistaEvento($evento, $acciones, $evento->getId(), NULL);
 }
 ?>

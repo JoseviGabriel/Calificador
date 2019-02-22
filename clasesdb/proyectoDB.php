@@ -79,9 +79,6 @@ class proyectoDB extends conectarDB{
             $tupla = $consulta->fetch_array();
         }
         return $proyectos;
-        
-        
-        
     }
     
     public static function obtenerProyectosSinEvento(){
@@ -89,18 +86,28 @@ class proyectoDB extends conectarDB{
         self::conectar();
         $sql = "SELECT * FROM proyectos WHERE evento IS NULL";
         $consulta = parent::$conexion->query($sql);
-         $tupla = $consulta->fetch_array();
+        $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
             $proyecto = new Proyecto($tupla["id"], $tupla["titulo"], $tupla["descripcionBreve"], $tupla["descripcionDetallada"], null, $tupla["evento"]);
             array_push($proyectos, $proyecto);
             $tupla = $consulta->fetch_array();
         }
         return $proyectos;
-        
-        
-        
+
     }
     
-    
+    public static function obtenerProyectosPorEvento($idEvento){
+        $proyectos = [];
+        self::conectar();
+        $sql = "SELECT * FROM proyectos WHERE evento = '$idEvento'";
+        $consulta = parent::$conexion->query($sql);
+        $tupla = $consulta->fetch_array();
+        while ($tupla != NULL) {
+            $proyecto = new Proyecto($tupla["id"], $tupla["titulo"], $tupla["descripcionBreve"], $tupla["descripcionDetallada"], null, $tupla["evento"]);
+            array_push($proyectos, $proyecto);
+            $tupla = $consulta->fetch_array();
+        }
+        return $proyectos;
+    }
     
 }

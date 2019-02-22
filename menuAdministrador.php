@@ -10,7 +10,7 @@ require_once 'clasesrender/Formulario.php';
 require_once 'clasesrender/Input.php';
 require_once 'clasesrender/RadioCheckBox.php';
 require_once 'clasesrender/UsuarioHTML.php';
-require_once 'clasesdb/EventoDB.php';
+require_once 'clasesdb/eventoDB.php';
 session_start();
 
 if (!isset($_SESSION["administrador"]))

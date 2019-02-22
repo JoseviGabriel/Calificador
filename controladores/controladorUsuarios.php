@@ -37,8 +37,8 @@ if (isset($_REQUEST["accion"])) {
                 $url = "usuarios.php";
             }
             break;
-        case "VERPROYECTOS": 
-            $url = "verProyectosUsuarios.php";
+        case "VERPROYECTOS": $idEvento = $_REQUEST["idEvento"];
+            $url = "verProyectosUsuarios.php?idEvento=".$idEvento;
             break;
     }
      header("Location: ../".$url);

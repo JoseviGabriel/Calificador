@@ -67,7 +67,8 @@ class usuarioHTML {
             <td><?php echo $evento->getFecha_cierre() ?></td>  
             <td><?php echo $evento->getApartados() ?></td>  
             <td><?php echo $calificacion ?></td>  
-            <td><?php echo $abierto ?></td>  
+            <td><?php echo $abierto ?></td> 
+            <?php if($proyectos != NULL){?>
             <td>
                 <select multiple name="proyectos[]">
                             <?php
@@ -77,7 +78,7 @@ class usuarioHTML {
                             ?>
                         </select>
             </td>
-            <?php
+            <?php   }
             foreach ($acciones as $accion) {
                 ?>
                 <td><?php echo $accion->dibujar($indice); ?></td>
@@ -87,6 +88,27 @@ class usuarioHTML {
 
         </tr>
        <?php
+    }
+    
+    public static function vistaProyecto($proyecto, $acciones, $indice){
+        ?>
+        <tr>
+
+            <td><?php echo $proyecto->getId() ?></td>
+            <td><?php echo $proyecto->getTitulo() ?></td>
+            <td><?php echo $proyecto->getDescripcionbreve() ?></td>
+            <td><?php echo $proyecto->getDescripciondetallada() ?></td>
+            <?php
+            foreach ($acciones as $accion) {
+                ?>
+                <td><?php echo $accion->dibujar($indice); ?></td>
+                <?php
+            }
+            ?>
+
+        </tr>
+
+        <?php
     }
     
     
