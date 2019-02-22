@@ -53,7 +53,7 @@ class usuarioDB extends conectarDB {
         $tupla = $consulta->fetch_array();
 
         while ($tupla != NULL) {
-            $usuario = new Usuario($tupla["login"], $tupla["nombre"], $tupla["apellidos"], $tupla["clave"], $tupla["telefono"], $tupla["activo"]);
+            $usuario = new Usuario($tupla["login"], $tupla["nombre"], $tupla["apellidos"], $tupla["clave"], $tupla["telefono"], $tupla["activo"], $tupla["proyecto"]);
             array_push($usuarios, $usuario);
             $tupla = $consulta->fetch_array();
         }

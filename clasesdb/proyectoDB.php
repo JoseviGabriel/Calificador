@@ -59,4 +59,8 @@ class proyectoDB extends conectarDB{
         $sql = "UPDATE usuarios SET proyecto = '$id' WHERE login = '$usuario'";
         parent::$conexion->query($sql);
     }
+    
+    public static function obtenerNombrePorId(){
+        $sql = "SELECT";
+    }
 }
