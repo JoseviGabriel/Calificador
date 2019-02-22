@@ -18,8 +18,10 @@ and open the template in the editor.
         <title></title>
     </head>
     <body>
+        <table>
         <?php
-            
+            require_once 'verEventos.php';
         ?>
+        </table>
     </body>
 </html>

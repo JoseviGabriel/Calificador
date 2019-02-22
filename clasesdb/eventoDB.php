@@ -58,6 +58,7 @@ class eventoDB extends conectarDB {
         $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
             $evento = new Evento($tupla["id"],$tupla["titulo"],$tupla["descripcion"], $tupla["fechaApertura"], $tupla["fechaCierre"], $tupla["apartados"], $tupla["calificacion"], $tupla["abierto"]);
+            $evento->addProyecto($tupla["proyectos"]);
             array_push($eventos, $evento);
             $tupla = $consulta->fetch_array();
         }
