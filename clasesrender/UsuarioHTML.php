@@ -44,6 +44,30 @@ class usuarioHTML {
     }
     
     
+    public static function vistaEvento($usuario, $acciones, $indice){
+        ?> 
+        <tr>
+
+            <td><?php echo $usuario->getLogin() ?></td>
+            <td><?php echo $usuario->getNombre() ?></td>
+            <td><?php echo $usuario->getApellidos() ?></td>
+            <td><?php echo $usuario->getClave() ?></td>
+            <td><?php echo $usuario->getTelefono() ?></td>  
+            <td><?php echo $activo ?></td>
+            <td><?php echo $proyecto[0] ?></td>
+            <?php
+            foreach ($acciones as $accion) {
+                ?>
+                <td><?php echo $accion->dibujar($indice); ?></td>
+                <?php
+            }
+            ?>
+
+        </tr>
+        
+    }
+    
+    
     public static function escribirSelects($usuario){
         ?>
         <option><?php echo $usuario->getLogin();?></option>

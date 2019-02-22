@@ -12,6 +12,7 @@
  * @author josev
  */
 class Evento {
+    private $id;
     private $titulo;
     private $descripcion;
     private $fecha_apertura;
@@ -22,7 +23,8 @@ class Evento {
     private $proyectos = [];
     
     
-    function __construct($titulo, $descripcion, $fecha_apertura, $fecha_cierre, $apartados, $calificacion, $abierto){
+    function __construct($id,$titulo, $descripcion, $fecha_apertura, $fecha_cierre, $apartados, $calificacion, $abierto){
+        $this->id = $id;
         $this->titulo = $titulo;
         $this->descripcion = $descripcion;
         $this->fecha_apertura = $fecha_apertura;

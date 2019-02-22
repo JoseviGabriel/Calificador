@@ -12,4 +12,8 @@ function init(){
     $("#gestionUsuarios").click(function() {
         $("#formGestionUsuarios").toggle( "slow" );
     });
+    
+    $("#gestionEventos").click(function() {
+        $("#formGestionEventos").toggle( "slow" );
+    });
 }
