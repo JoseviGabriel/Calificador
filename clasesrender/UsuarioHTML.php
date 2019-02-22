@@ -42,9 +42,21 @@ class usuarioHTML {
 
         <?php
     }
+
     
     
     public static function vistaEvento($evento, $acciones, $indice){
+        if($evento->getCalificacion() == 1){
+            $calificacion = "Unica";
+        } else {
+            $calificacion = "Normal";
+        }
+        
+        if($evento->getAbierto() == 1){
+            $abierto = "Si";
+        } else {
+            $abierto = "No";
+        }
         ?> 
         <tr>
 
@@ -54,9 +66,9 @@ class usuarioHTML {
             <td><?php echo $evento->getFecha_apertura() ?></td>
             <td><?php echo $evento->getFecha_cierre() ?></td>
             <td><?php echo $evento->getApartados() ?></td>
-            <td><?php echo $evento->getCalificacion() ?></td>
-            <td><?php echo $evento->getAbierto() ?></td>
-            <td><?php echo $evento->getProyectos() ?></td>
+            <td><?php echo $calificacion ?></td>
+            <td><?php echo $abierto ?></td>
+            <td><?php echo $evento->getProyectos()[0] ?></td>
             <?php
             foreach ($acciones as $accion) {
                 ?>
@@ -66,7 +78,7 @@ class usuarioHTML {
             ?>
 
         </tr>
-
+       <?php
     }
     
     

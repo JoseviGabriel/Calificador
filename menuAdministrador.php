@@ -1,7 +1,15 @@
 <?php
 require_once 'clases/Usuario.php';
 require_once 'clasesdb/usuarioDB.php';
+require_once 'clasesdb/proyectoDB.php';
+require_once 'clases/Evento.php';
+require_once 'clasesrender/Accion.php';
+require_once 'clasesrender/Enlace.php';
+require_once 'clasesrender/Formulario.php';
+require_once 'clasesrender/Input.php';
+require_once 'clasesrender/RadioCheckBox.php';
 require_once 'clasesrender/UsuarioHTML.php';
+require_once 'clasesdb/EventoDB.php';
 session_start();
 
 if (!isset($_SESSION["administrador"]))
@@ -48,10 +56,10 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
         
         <form id="formGestionEventos" action="controladores/controladorAdministrador.php" method="post">
             <table>
-               <td><label>Evento: </label></td>
-               <td><select id="Eventos"></select></td>
-                
-                
+               <?php
+               require_once 'verEventos.php';
+               
+               ?>
                 
             </table>
         </form>
