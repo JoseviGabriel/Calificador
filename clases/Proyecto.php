@@ -12,6 +12,7 @@
  * 
  */
 class Proyecto {
+    private $id;
     private $titulo;
     private $descripcionbreve;
     private $descripciondetallada;
@@ -19,7 +20,8 @@ class Proyecto {
     private $calificaciones=[];
     private $evento;
     
-    function __construct($titulo, $descripcionbreve, $descripciondetallada, $documentos, $evento) {
+    function __construct($id,$titulo, $descripcionbreve, $descripciondetallada, $documentos, $evento) {
+        $this->id = $id;
         $this->titulo = $titulo;
         $this->descripcionbreve = $descripcionbreve;
         $this->descripciondetallada = $descripciondetallada;
@@ -27,6 +29,15 @@ class Proyecto {
         $this->evento = $evento;
     }
     
+    function getId() {
+        return $this->id;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+        
     function getTitulo() {
         return $this->titulo;
     }
