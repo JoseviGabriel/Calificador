@@ -45,7 +45,7 @@ class usuarioHTML {
 
     
     
-    public static function vistaEvento($evento, $acciones, $indice){
+    public static function vistaEvento($evento, $acciones, $indice, $proyectos){
         if($evento->getCalificacion() == 1){
             $calificacion = "Unica";
         } else {
@@ -66,8 +66,8 @@ class usuarioHTML {
             <td><?php echo $evento->getFecha_apertura() ?></td>
             <td><?php echo $evento->getFecha_cierre() ?></td>  
             <td><?php echo $evento->getApartados() ?></td>  
-            <td><?php echo $evento->getCalificacion() ?></td>  
-            <td><?php echo $evento->getAbierto() ?></td>  
+            <td><?php echo $calificacion ?></td>  
+            <td><?php echo $abierto ?></td>  
             <td>
                 <select multiple name="proyectos[]">
                             <?php
