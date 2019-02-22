@@ -16,6 +16,7 @@ class Proyecto {
     private $descripcionbreve;
     private $descripciondetallada;
     private $documentos=[];
+    private $calificaciones=[];
     private $evento;
     
     function __construct($titulo, $descripcionbreve, $descripciondetallada, $documentos, $evento) {
@@ -66,6 +67,15 @@ class Proyecto {
         $this->evento = $evento;
     }
 
+    function getCalificaciones() {
+        return $this->calificaciones;
+    }
 
-
+    function setCalificaciones($calificaciones) {
+        $this->calificaciones = $calificaciones;
+    }
+    
+    function addCalificacion($calificacion){
+        array_push($calificaciones, $calificacion);
+    }
 }
