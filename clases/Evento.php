@@ -33,7 +33,15 @@ class Evento {
         $this->calificacion = $calificacion;
         $this->abierto = $abierto;
     }
-    
+    function getId() {
+        return $this->id;
+    }
+
+    function setId($id) {
+        $this->id = $id;
+    }
+
+        
     function getProyectos() {
         return $this->proyectos;
     }
