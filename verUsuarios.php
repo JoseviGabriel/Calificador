@@ -1,6 +1,7 @@
 <?php
 require_once 'clases/Usuario.php';
 require_once 'clasesdb/usuarioDB.php';
+require_once 'clasesdb/proyectoDB.php';
 require_once 'clasesrender/Accion.php';
 require_once 'clasesrender/Enlace.php';
 require_once 'clasesrender/Formulario.php';
