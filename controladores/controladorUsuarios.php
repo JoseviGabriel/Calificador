@@ -31,7 +31,7 @@ if (isset($_REQUEST["accion"])) {
             $clave = $_REQUEST["clave"];
             $ok = usuarioDB::acceder($login, $clave);
             if($ok){
-                $_SESSION["usuario"]=new Usuario($login, NULL, NULL, NULL, NULL, NULL);
+                $_SESSION["usuario"]=new Usuario($login, NULL, NULL, NULL, NULL, NULL, NULL);
                 $url = "menuUsuarios.php";
             } else {
                 $url = "usuarios.php";

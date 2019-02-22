@@ -3,6 +3,8 @@ session_start();
 if (!isset($_SESSION["usuario"])) {
     header("Location: usuarios.php");
 }
+
+
 ?>
 <!DOCTYPE html>
 <!--
@@ -17,7 +19,7 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-            echo "Hola muy buenas usuario logueado";
+            
         ?>
     </body>
 </html>
