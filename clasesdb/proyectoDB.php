@@ -1,5 +1,4 @@
 <?php
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -67,4 +66,41 @@ class proyectoDB extends conectarDB{
         $consulta = parent::$conexion->query($sql);
         return $consulta->fetch_array();
     }
+    
+    public static function obtenerProyectos(){
+        $proyectos=[];
+        self::conectar();
+        $sql = "SELECT * FROM proyectos";
+        $consulta = parent::$conexion->query($sql);
+         $tupla = $consulta->fetch_array();
+        while ($tupla != NULL) {
+            $proyecto = new Proyecto($tupla["id"], $tupla["titulo"], $tupla["descripcionBreve"], $tupla["descripcionDetallada"], null, $tupla["evento"]);
+            array_push($proyectos, $proyecto);
+            $tupla = $consulta->fetch_array();
+        }
+        return $proyectos;
+        
+        
+        
+    }
+    
+    public static function obtenerProyectosSinEvento(){
+        $proyectos=[];
+        self::conectar();
+        $sql = "SELECT * FROM proyectos WHERE evento IS NULL";
+        $consulta = parent::$conexion->query($sql);
+         $tupla = $consulta->fetch_array();
+        while ($tupla != NULL) {
+            $proyecto = new Proyecto($tupla["id"], $tupla["titulo"], $tupla["descripcionBreve"], $tupla["descripcionDetallada"], null, $tupla["evento"]);
+            array_push($proyectos, $proyecto);
+            $tupla = $consulta->fetch_array();
+        }
+        return $proyectos;
+        
+        
+        
+    }
+    
+    
+    
 }

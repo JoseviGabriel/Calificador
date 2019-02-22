@@ -11,10 +11,13 @@
     <th>Apartados</th>
     <th>Calificacion</th>
     <th>Abierto</th>
+    <td>Proyectos</td>
     <th colspan="3">Acciones</th>
 </tr>
 <?php
 $eventos = eventoDB::obtenerEventos();
+$proyectos=proyectoDB::obtenerProyectosSinEvento();
+
 //var_dump($alumnos);
 //$enlace1=new Enlace("controlador.php","Eliminar","accion");
 
@@ -23,6 +26,11 @@ foreach ($eventos as $evento) {
     $radioCheckbox = new RadioCheckBox("checkbox", $evento->getId(), "activar[]", "Activar/Desactivar");
     array_push($acciones, $radioCheckbox);
 
-    echo usuarioHTML::vistaEvento($evento, $acciones, $evento->getId());
+    echo usuarioHTML::vistaEvento($evento, $acciones, $evento->getId(), $proyectos);
 }
 ?>
+
+
+
+ 
+                    

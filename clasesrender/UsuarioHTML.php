@@ -44,7 +44,7 @@ class usuarioHTML {
     }
 
     
-    public static function vistaEvento($evento, $acciones, $indice){
+    public static function vistaEvento($evento, $acciones, $indice,$proyectos){
         ?> 
         <tr>
 
@@ -56,6 +56,15 @@ class usuarioHTML {
             <td><?php echo $evento->getApartados() ?></td>  
             <td><?php echo $evento->getCalificacion() ?></td>  
             <td><?php echo $evento->getAbierto() ?></td>  
+            <td>
+                <select multiple name="proyectos[]">
+                            <?php
+                            foreach ($proyectos as $proyecto) {
+                                echo self::escribirSelectProyectos($proyecto);
+                            }
+                            ?>
+                        </select>
+            </td>
             <?php
             foreach ($acciones as $accion) {
                 ?>
@@ -73,6 +82,13 @@ class usuarioHTML {
         ?>
         <option><?php echo $usuario->getLogin();?></option>
         <?php
+    }
+    
+    public static function escribirSelectProyectos($proyecto){
+        ?>
+        <option value="<?php echo $proyecto->getId(); ?>"><?php echo $proyecto->getTitulo();?></option>
+        <?php
+        
     }
 
 }
