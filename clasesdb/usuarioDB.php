@@ -33,7 +33,7 @@ class usuarioDB extends conectarDB {
         $resultado = false;
         self::conectar();
         $clave = md5($clave);
-        $sql = "SELECT * FROM usuarios WHERE login='$usuario' AND clave='$clave'";
+        $sql = "SELECT * FROM usuarios WHERE login='$usuario' AND clave='$clave' AND activo=1";
         $consulta = parent::$conexion->query($sql);
         //Contamos cuantas filas han salido si ha salido 0 es false y si sale 1 es true
         $valor = mysqli_num_rows($consulta);
@@ -53,7 +53,7 @@ class usuarioDB extends conectarDB {
         $tupla = $consulta->fetch_array();
 
         while ($tupla != NULL) {
-            $usuario = new Usuario($tupla["login"], $tupla["nombre"], $tupla["apellidos"], $tupla["clave"], $tupla["telefono"], $tupla["activo"]);
+            $usuario = new Usuario($tupla["login"], $tupla["nombre"], $tupla["apellidos"], $tupla["clave"], $tupla["telefono"], $tupla["activo"], $tupla["proyecto"]);
             array_push($usuarios, $usuario);
             $tupla = $consulta->fetch_array();
         }
@@ -70,7 +70,7 @@ class usuarioDB extends conectarDB {
         //Contamos cuantas filas han salido si ha salido 0 es false y si sale 1 es true
         $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
-            $usuario = new Usuario($tupla["login"], $tupla["nombre"], $tupla["apellidos"], $tupla["telefono"], $tupla["clave"], $tupla["activo"]);
+            $usuario = new Usuario($tupla["login"], $tupla["nombre"], $tupla["apellidos"], $tupla["telefono"], $tupla["clave"], $tupla["activo"], $tupla["proyecto"]);
             array_push($usuarios, $usuario);
             $tupla = $consulta->fetch_array();
         }
@@ -86,7 +86,7 @@ class usuarioDB extends conectarDB {
         //Contamos cuantas filas han salido si ha salido 0 es false y si sale 1 es true
         $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
-            $usuario = new Usuario($tupla["login"], $tupla["nombre"], $tupla["apellidos"], $tupla["telefono"], $tupla["clave"], $tupla["activo"]);
+            $usuario = new Usuario($tupla["login"], $tupla["nombre"], $tupla["apellidos"], $tupla["telefono"], $tupla["clave"], $tupla["activo"], $tupla["proyecto"]);
             array_push($usuarios, $usuario);
             $tupla = $consulta->fetch_array();
         }

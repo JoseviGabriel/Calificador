@@ -13,6 +13,13 @@
 class usuarioHTML {
 
     public static function vistaTabular($usuario, $acciones, $indice) {
+        if($usuario->getActivo() == 1){
+            $activo = "Si";
+        } else {
+            $activo = "No";
+        }
+        
+        $proyecto = proyectoDB::obtenerNombrePorId($usuario->getProyecto());
         ?> 
         <tr>
 
@@ -21,8 +28,8 @@ class usuarioHTML {
             <td><?php echo $usuario->getApellidos() ?></td>
             <td><?php echo $usuario->getClave() ?></td>
             <td><?php echo $usuario->getTelefono() ?></td>  
-            <td><?php echo $usuario->getActivo() ?></td>
-            <td><?php echo $usuario->getProyecto() ?></td>
+            <td><?php echo $activo ?></td>
+            <td><?php echo $proyecto[0] ?></td>
             <?php
             foreach ($acciones as $accion) {
                 ?>

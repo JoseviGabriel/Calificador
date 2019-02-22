@@ -20,13 +20,14 @@ class Usuario {
     private $activo;
     private $proyecto;
     
-    function __construct($login, $nombre, $apellidos, $telefono, $clave, $activo) {
+    function __construct($login, $nombre, $apellidos, $telefono, $clave, $activo, $proyecto) {
         $this->nombre = $nombre;
         $this->apellidos = $apellidos;
         $this->telefono = $telefono;
         $this->login = $login;
         $this->clave = $clave;
         $this->activo = $activo;
+        $this->proyecto = $proyecto;
     }
 
     function getNombre() {
