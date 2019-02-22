@@ -1,6 +1,7 @@
 <?php
 
 require_once 'conectarDB.php';
+require_once '../clases/Evento.php';
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -45,6 +46,23 @@ class eventoDB extends conectarDB {
         $ok = parent::$conexion->errno;
         parent::$conexion->close();
         return $ok;
+    }
+    
+    
+    public static function obtenerEventos(){
+        $eventos = [];
+        self::conectar();
+        $sql = "SELECT * FROM eventos";
+        $consulta = parent::$conexion->query($sql);
+        //Contamos cuantas filas han salido si ha salido 0 es false y si sale 1 es true
+        $tupla = $consulta->fetch_array();
+        while ($tupla != NULL) {
+            $evento = new Evento($tupla["id"],$tupla["titulo"],$tupla["descripcion"], $tupla["fechaApertura"], $tupla["fechaCierre"], $tupla["apartados"], $tupla["calificacion"], $tupla["abierto"]);
+            array_push($eventos, $evento);
+            $tupla = $consulta->fetch_array();
+        }
+        parent::$conexion->close();
+        return $eventos;
     }
 
 }

@@ -33,7 +33,7 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
             </article>
             <article>
                 Gestion Eventos
-                <input type="button" name="accion" value="Gestion Eventos"/>
+                <input type="button" name="accion" id="gestionEventos" value="Gestion Eventos"/>
             </article>
             <article>
                 Gestion Usuarios
@@ -44,7 +44,17 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
                 <input type="button" name="accion" id="crearProyectos" value="Gestion Proyectos"/>
             </article>
         </section>
-
+        
+        
+        <form id="formGestionEventos" action="controladores/controladorAdministrador.php" method="post">
+            <table>
+               <td><label>Evento: </label></td>
+               <td><select id="Eventos"></select></td>
+                
+                
+                
+            </table>
+        </form>
 
 
         <form id="formCrearProyecto" action="controladores/controladorAdministrador.php" method="post" enctype="multipart/form-data">
