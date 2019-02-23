@@ -75,6 +75,8 @@ class proyectoDB extends conectarDB{
          $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
             $proyecto = new Proyecto($tupla["id"], $tupla["titulo"], $tupla["descripcionBreve"], $tupla["descripcionDetallada"], null, $tupla["evento"]);
+            $proyecto->obtenerFicheros(getcwd()."\\proyectos\\".$tupla["titulo"]);
+
             array_push($proyectos, $proyecto);
             $tupla = $consulta->fetch_array();
         }
@@ -89,6 +91,7 @@ class proyectoDB extends conectarDB{
         $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
             $proyecto = new Proyecto($tupla["id"], $tupla["titulo"], $tupla["descripcionBreve"], $tupla["descripcionDetallada"], null, $tupla["evento"]);
+            $proyecto->obtenerFicheros(getcwd()."\\proyectos\\".$tupla["titulo"]);
             array_push($proyectos, $proyecto);
             $tupla = $consulta->fetch_array();
         }
@@ -104,6 +107,8 @@ class proyectoDB extends conectarDB{
         $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
             $proyecto = new Proyecto($tupla["id"], $tupla["titulo"], $tupla["descripcionBreve"], $tupla["descripcionDetallada"], null, $tupla["evento"]);
+            $proyecto->obtenerFicheros(getcwd()."\\proyectos\\".$tupla["titulo"]);
+
             array_push($proyectos, $proyecto);
             $tupla = $consulta->fetch_array();
         }

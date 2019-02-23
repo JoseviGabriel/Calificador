@@ -17,7 +17,6 @@
 <?php
 $eventos = eventoDB::obtenerEventos();
 $proyectos=proyectoDB::obtenerProyectosSinEvento();
-
 //var_dump($alumnos);
 //$enlace1=new Enlace("controlador.php","Eliminar","accion");
 
