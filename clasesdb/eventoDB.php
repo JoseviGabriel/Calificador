@@ -46,9 +46,8 @@ class eventoDB extends conectarDB {
         parent::$conexion->close();
         return $ok;
     }
-    
-    
-    public static function obtenerEventos(){
+
+    public static function obtenerEventos() {
         $eventos = [];
         self::conectar();
         $sql = "SELECT * FROM eventos";
@@ -56,7 +55,7 @@ class eventoDB extends conectarDB {
         //Contamos cuantas filas han salido si ha salido 0 es false y si sale 1 es true
         $tupla = $consulta->fetch_array();
         while ($tupla != NULL) {
-            $evento = new Evento($tupla["id"],$tupla["titulo"],$tupla["descripcion"], $tupla["fechaApertura"], $tupla["fechaCierre"], $tupla["apartados"], $tupla["calificacion"], $tupla["abierto"]);
+            $evento = new Evento($tupla["id"], $tupla["titulo"], $tupla["descripcion"], $tupla["fechaApertura"], $tupla["fechaCierre"], $tupla["apartados"], $tupla["calificacion"], $tupla["abierto"]);
             $evento->addProyecto($tupla["proyectos"]);
             array_push($eventos, $evento);
             $tupla = $consulta->fetch_array();
@@ -65,4 +64,42 @@ class eventoDB extends conectarDB {
         return $eventos;
     }
 
+    public static function establecerProyectos($idEvento, $idProyectos) {
+        $cadena = "";
+        $limite = sizeof($idProyectos);
+        foreach ($idProyectos as $clave => $valor) {
+            if ($clave == $limite - 1) {
+                $cadena .= $valor;
+            } else {
+                $cadena .= $valor . ":";
+            }
+        }
+        self::conectar();
+        $sql = "SELECT proyectos FROM eventos WHERE id='$idEvento'";
+        $consulta = parent::$conexion->query($sql);
+        $tupla = $consulta->fetch_array();
+
+        if ($tupla["proyectos"] == NULL) {
+            $sql = "UPDATE eventos SET proyectos = '$cadena' WHERE id = '$idEvento'";
+            $consulta = parent::$conexion->query($sql);
+            
+            foreach ($idProyectos as $idProyecto) {
+                $sql = "UPDATE proyectos SET evento = '$idEvento' WHERE id = '$idProyecto'";
+                $consulta = parent::$conexion->query($sql);
+            }
+        } else {
+            $proyectos = explode(":", $tupla["proyectos"]);
+            foreach($idProyectos as $id){
+                array_push($proyectos, $id);
+            }
+            $cadenaProyectos = $cadena.":".$tupla["proyectos"];
+            $sql = "UPDATE eventos SET proyectos = '$cadenaProyectos' WHERE id = '$idEvento'";
+            $consulta = parent::$conexion->query($sql);
+            
+            foreach($proyectos as $idProyecto){
+                $sql = "UPDATE proyectos SET evento = '$idEvento' WHERE id = '$idProyecto'";
+                $consulta = parent::$conexion->query($sql);
+            }
+        }
+    }
 }

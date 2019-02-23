@@ -11,7 +11,7 @@
     <th>Apartados</th>
     <th>Calificacion</th>
     <th>Abierto</th>
-    <td>Proyectos</td>
+    <th>Proyectos</th>
     <th colspan="3">Acciones</th>
 </tr>
 <?php
@@ -23,8 +23,10 @@ $proyectos=proyectoDB::obtenerProyectosSinEvento();
 
 foreach ($eventos as $evento) {
     $acciones = [];
-    $radioCheckbox = new RadioCheckBox("checkbox", $evento->getId(), "activar[]", "Activar/Desactivar");
-    array_push($acciones, $radioCheckbox);
+    $submit = new Input("submit", "Establecer Proyectos", "accion");
+    $hidden = new Input("hidden", $evento->getId(), "idEvento");
+    array_push($acciones, $submit);
+    array_push($acciones, $hidden);
 
     echo usuarioHTML::vistaEvento($evento, $acciones, $evento->getId(), $proyectos);
 }

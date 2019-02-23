@@ -32,28 +32,35 @@ if (isset($_REQUEST["accion"])) {
             }
             $url = "Location:../menuAdministrador.php";
             break;
-            
-            
+
+
         case "CREARPROYECTO":
             $url = "Location:../menuAdministrador.php";
-            $ok=proyectoDB::insertarProyecto($_REQUEST);
-            if ($ok == 0){
+            $ok = proyectoDB::insertarProyecto($_REQUEST);
+            if ($ok == 0) {
                 subirFicheros($_REQUEST["titulo"]);
             }
             break;
         case "ACTIVAR":
             $checkBoxes = $_REQUEST["activar"];
             var_dump($checkBoxes);
-            foreach($checkBoxes as $valor){
+            foreach ($checkBoxes as $valor) {
                 usuarioDB::activarUsuario($valor);
             }
             $url = "Location:../menuAdministrador.php";
             break;
         case "DESACTIVAR":
             $checkBoxes = $_REQUEST["activar"];
-            foreach($checkBoxes as $valor){
+            foreach ($checkBoxes as $valor) {
                 usuarioDB::desactivarUsuario($valor);
             }
+            $url = "Location:../menuAdministrador.php";
+            break;
+        case "ESTABLECERPROYECTOS":
+            $idEvento = $_REQUEST["idEvento"];
+            $idProyectos = $_REQUEST["proyectos"];
+
+            eventoDB::establecerProyectos($idEvento, $idProyectos);
             $url = "Location:../menuAdministrador.php";
             break;
     }
