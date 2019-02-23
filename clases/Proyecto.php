@@ -70,8 +70,9 @@ class Proyecto {
         $this->descripciondetallada = $descripciondetallada;
     }
 
-    function setDocumentos($documentos) {
-        $this->documentos = $documentos;
+   public function setDocumentos($documento) {
+        array_push($this->documentos, $documento);
+        
     }
 
     function setEvento($evento) {
@@ -88,5 +89,16 @@ class Proyecto {
     
     function addCalificacion($calificacion){
         array_push($calificaciones, $calificacion);
+    }
+    
+    function obtenerFicheros($ruta){
+        $directorio = opendir($ruta);
+        while ($archivo = readdir($directorio)){
+            if ($archivo == "." || $archivo == ".." ){
+                
+            }else{
+                $this->documentos[]= $archivo;
+            }
+        }
     }
 }
