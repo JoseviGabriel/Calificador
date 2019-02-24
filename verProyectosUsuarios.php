@@ -28,6 +28,7 @@ $proyectos = proyectoDB::obtenerProyectosPorEvento($idEvento);
                 <th>Titulo</th>
                 <th>Descripcion Breve</th>
                 <th>Descripcion Detallada</th>
+                <th></th>
             </tr>
             <?php
             foreach ($proyectos as $proyecto) {

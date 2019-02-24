@@ -43,7 +43,6 @@ if (isset($_REQUEST["accion"])) {
             break;
         case "ACTIVAR":
             $checkBoxes = $_REQUEST["activar"];
-            var_dump($checkBoxes);
             foreach ($checkBoxes as $valor) {
                 usuarioDB::activarUsuario($valor);
             }
@@ -58,9 +57,31 @@ if (isset($_REQUEST["accion"])) {
             break;
         case "ESTABLECERPROYECTOS":
             $idEvento = $_REQUEST["idEvento"];
-            $idProyectos = $_REQUEST["proyectos"];
-
-            eventoDB::establecerProyectos($idEvento, $idProyectos);
+            if(isset($_REQUEST["proyectos"])){
+                $idProyectos = $_REQUEST["proyectos"];
+                eventoDB::establecerProyectos($idEvento, $idProyectos);
+            }
+            
+            $url = "Location:../menuAdministrador.php";
+            break;
+            
+        case "CAMBIARPROYECTO":
+            $idProyecto = $_REQUEST["idProyecto"];
+            $url = "Location:../cambiarProyecto.php?idProyecto=$idProyecto";
+            break;
+        
+        case "ACEPTAR":
+            $idProyecto = $_REQUEST["idProyecto"];
+            $usuarios = $_REQUEST["usuarios"];
+            $descripcionBreve = $_REQUEST["descripcionBreve"];
+            $descripcionDetallada = $_REQUEST["descripcionDetallada"];
+            $titulo = proyectoDB::actualizarProyecto($idProyecto, $descripcionBreve, $descripcionDetallada, $usuarios);
+            subirFicheros($titulo);
+            $url = "Location:../menuAdministrador.php";
+            break;
+        case "ELIMINAR":
+            $idProyecto = $_REQUEST["idProyecto"];
+            proyectoDB::eliminarProyecto($idProyecto);
             $url = "Location:../menuAdministrador.php";
             break;
     }
