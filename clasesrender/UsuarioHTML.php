@@ -90,7 +90,7 @@ class usuarioHTML {
        <?php
     }
     
-    public static function vistaProyecto($proyecto, $acciones, $indice){
+    public static function vistaProyectoAdmin($proyecto, $acciones, $indice){
         ?>
         <tr>
 
