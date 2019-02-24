@@ -90,6 +90,27 @@ class usuarioHTML {
        <?php
     }
     
+    public static function vistaProyectoAdmin($proyecto, $acciones, $indice){
+        ?>
+        <tr>
+
+            <td><?php echo $proyecto->getId() ?></td>
+            <td><?php echo $proyecto->getTitulo() ?></td>
+            <td><?php echo $proyecto->getDescripcionbreve() ?></td>
+            <td><?php echo $proyecto->getDescripciondetallada() ?></td>
+            <?php
+            foreach ($acciones as $accion) {
+                ?>
+                <td><?php echo $accion->dibujar($indice); ?></td>
+                <?php
+            }
+            ?>
+
+        </tr>
+
+        <?php
+    }
+    
     
     public static function escribirSelects($usuario){
         ?>
@@ -102,6 +123,76 @@ class usuarioHTML {
         <option value="<?php echo $proyecto->getId(); ?>"><?php echo $proyecto->getTitulo();?></option>
         <?php
         
+    }
+    
+    public static function vistaProyectoAlumnos($proyecto, $acciones, $indice){
+        $pertenece=false;
+        $usuarios=proyectoDB::obtenerUsuariosProyecto($proyecto->getId());
+        foreach ($usuarios as $usuario){
+            echo $usuario." ";
+            
+            if ($usuario==$_SESSION["usuario"]->getLogin()) $pertenece=true;
+        }
+        if ($pertenece){
+            echo "true";
+        }else{
+            echo "false";
+        }
+        ?>
+        <tr>
+
+            <td><?php echo $proyecto->getId() ?></td>
+            <td><?php echo $proyecto->getTitulo() ?></td>
+            <td><?php echo $proyecto->getDescripcionbreve() ?></td>
+            <td><?php echo $proyecto->getDescripciondetallada() ?></td>
+            <td>    
+                <?php 
+                  if (count($proyecto->getDocumentos()) != 0 ){
+                      $titulo=$proyecto->getTitulo();
+                      
+                    foreach ($proyecto->getDocumentos() as $documento){
+                        $ruta= rawurlencode("proyectos/$titulo/$documento");
+                      echo "<a target='_blank' href=".$ruta.">".$documento."</a></br>";
+                    }
+                  }else{
+                      echo "Sin ficheros";
+                  }
+
+                ?>
+            </td>
+            <td>"NOTA MEDIA"</td>
+            <td>
+                <?php
+                    if ($pertenece){
+                        echo "Perteneces a este proyecto no puedes calificarlo.";
+                    }else{
+                            ?>
+
+                            <select name="notacalificacion">
+
+                                <?php
+                                    for ($x=1;$x<11;$x++){
+                                        ?>
+                                        <option><?php echo $x; ?></option> 
+                                        <?php
+                                    }
+                                ?>
+                                </option>    
+
+                            </select>
+                        </td>
+                        <?php
+                        foreach ($acciones as $accion) {
+                            ?>
+                            <td><?php echo $accion->dibujar($indice); ?></td>
+                            <?php
+                        }
+                    }
+            ?>
+
+        </tr>
+
+        <?php
     }
 
 }

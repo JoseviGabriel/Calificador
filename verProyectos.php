@@ -34,7 +34,7 @@ foreach ($proyectos as $proyecto) {
     array_push($acciones, $cambiar);
     array_push($acciones, $hidden);
 
-    echo UsuarioHTML::vistaProyecto($proyecto, $acciones, $proyecto->getId());
+    echo UsuarioHTML::vistaProyectoAdmin($proyecto, $acciones, $proyecto->getId());
 }
 ?>
   

@@ -37,7 +37,7 @@ $proyectos = proyectoDB::obtenerProyectosPorEvento($idEvento);
             <?php
             foreach ($proyectos as $proyecto) {
                 $acciones = [];
-                echo UsuarioHTML::vistaProyecto($proyecto, $acciones, $proyecto->getId());
+                echo UsuarioHTML::vistaProyectoAlumnos($proyecto, $acciones, $proyecto->getId());
             }
             ?>
         </table>
