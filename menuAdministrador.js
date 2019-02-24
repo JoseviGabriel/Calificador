@@ -16,4 +16,8 @@ function init(){
     $("#gestionEventos").click(function() {
         $("#formGestionEventos").toggle( "slow" );
     });
+    
+    $("#gestionProyectos").click(function() {
+        $("#formGestionProyectos").toggle( "slow" );
+    });
 }
