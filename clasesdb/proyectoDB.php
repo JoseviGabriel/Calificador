@@ -115,4 +115,16 @@ class proyectoDB extends conectarDB{
         return $proyectos;
     }
     
+    
+    public static function obtenerUsuariosProyecto($id){
+        self::conectar();
+        $sql = "SELECT usuarios FROM proyectos WHERE id='$id'";
+        $consulta = parent::$conexion->query($sql);
+        $usuarios = $consulta->fetch_array();
+        $usuarios = explode(":", $usuarios["usuarios"]);
+        return $usuarios;
+        
+    }
+     
+
 }

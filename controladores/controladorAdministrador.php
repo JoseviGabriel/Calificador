@@ -57,17 +57,27 @@ if (isset($_REQUEST["accion"])) {
             $url = "Location:../menuAdministrador.php";
             break;
         case "ESTABLECERPROYECTOS":
-            $idEvento = $_REQUEST["idEvento"];
-            $idProyectos = $_REQUEST["proyectos"];
+           $idEvento = $_REQUEST["idEvento"];
+            if(isset($_REQUEST["proyectos"])){
+                $idProyectos = $_REQUEST["proyectos"];
+                eventoDB::establecerProyectos($idEvento, $idProyectos);
+            }
 
-            eventoDB::establecerProyectos($idEvento, $idProyectos);
             $url = "Location:../menuAdministrador.php";
+            break;
             break;
     }
     header($url);
 }
 
 function subirFicheros($nombreproyecto) {
+     $directorio = '../proyectos/' . $nombreproyecto . '/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
+      //Validamos si la ruta de destino existe, en caso de no existir la creamos
+      if (!file_exists($directorio)) {
+        mkdir($directorio, 0777) or die("No se puede crear el directorio de extracci&oacute;n");
+     }
+    
+    
     //Como el elemento es un arreglos utilizamos foreach para extraer todos los valores
     foreach ($_FILES["archivo"]['tmp_name'] as $key => $tmp_name) {
         //Validamos que el archivo exista
@@ -75,11 +85,7 @@ function subirFicheros($nombreproyecto) {
             $filename = $_FILES["archivo"]["name"][$key]; //Obtenemos el nombre original del archivo
             $source = $_FILES["archivo"]["tmp_name"][$key]; //Obtenemos un nombre temporal del archivo
 
-            $directorio = '../proyectos/' . $nombreproyecto . '/'; //Declaramos un  variable con la ruta donde guardaremos los archivos
-            //Validamos si la ruta de destino existe, en caso de no existir la creamos
-            if (!file_exists($directorio)) {
-                mkdir($directorio, 0777) or die("No se puede crear el directorio de extracci&oacute;n");
-            }
+           
 
             $dir = opendir($directorio); //Abrimos el directorio de destino
             $target_path = $directorio . '/' . $filename; //Indicamos la ruta de destino, así como el nombre del archivo

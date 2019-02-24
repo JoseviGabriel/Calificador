@@ -92,13 +92,17 @@ class Proyecto {
     }
     
     function obtenerFicheros($ruta){
-        $directorio = opendir($ruta);
-        while ($archivo = readdir($directorio)){
-            if ($archivo == "." || $archivo == ".." ){
-                
-            }else{
-                $this->documentos[]= $archivo;
+        if (is_dir($ruta)){
+             $directorio = opendir($ruta);
+            while ($archivo = readdir($directorio)){
+                if ($archivo == "." || $archivo == ".." ){
+
+                }else{
+                    $this->documentos[]= $archivo;
+                }
             }
         }
+        
+       
     }
 }
