@@ -33,10 +33,16 @@ $proyectos = proyectoDB::obtenerProyectosPorEvento($idEvento);
                 <th>Ficheros</th>
                 <th>Nota Media</th>
                 <th>Calificar</th>
+                <th>Accion</th>
             </tr>
             <?php
+            
             foreach ($proyectos as $proyecto) {
                 $acciones = [];
+                $input = new Input("submit", "Calificar", "accion");
+                $hidden = new Input("hidden", $proyecto->getId(), "idProyecto");
+                array_push($acciones, $input);
+                array_push($acciones, $hidden);
                 echo UsuarioHTML::vistaProyectoAlumnos($proyecto, $acciones, $proyecto->getId());
             }
             ?>

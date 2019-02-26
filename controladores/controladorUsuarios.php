@@ -1,9 +1,9 @@
 <?php
-session_start();
 require_once "../clasesdb/usuarioDB.php";
 require_once "../clasesdb/conectarDB.php";
+require_once "../clasesdb/proyectoDB.php";
 require_once "../clases/Usuario.php";
-
+session_start();
 if (isset($_REQUEST["accion"])) {
     $accion = $_REQUEST["accion"];
     $accion = strtoupper($accion);
@@ -40,6 +40,14 @@ if (isset($_REQUEST["accion"])) {
         case "VERPROYECTOS": $idEvento = $_REQUEST["idEvento"];
             $url = "verProyectosUsuarios.php?idEvento=".$idEvento;
             break;
+        
+        case "CALIFICAR":
+            $calificacion=$_REQUEST["notacalificacion"];
+            $login=$_SESSION["usuario"]->getLogin();
+            $id=$_REQUEST["idProyecto"];
+            proyectoDB::insertarCalificacionUsuarioProyecto($login, $id, $calificacion);
+            $url = "menuUsuarios.php";
+        break;
     }
      header("Location: ../".$url);
 }

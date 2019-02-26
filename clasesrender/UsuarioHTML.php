@@ -128,19 +128,13 @@ class usuarioHTML {
     public static function vistaProyectoAlumnos($proyecto, $acciones, $indice){
         $pertenece=false;
         $usuarios=proyectoDB::obtenerUsuariosProyecto($proyecto->getId());
-        foreach ($usuarios as $usuario){
-            echo $usuario." ";
-            
+        foreach ($usuarios as $usuario){            
             if ($usuario==$_SESSION["usuario"]->getLogin()) $pertenece=true;
         }
-        if ($pertenece){
-            echo "true";
-        }else{
-            echo "false";
-        }
         ?>
+        
         <tr>
-
+            <form action="controladores/controladorUsuarios.php" >
             <td><?php echo $proyecto->getId() ?></td>
             <td><?php echo $proyecto->getTitulo() ?></td>
             <td><?php echo $proyecto->getDescripcionbreve() ?></td>
@@ -160,11 +154,14 @@ class usuarioHTML {
 
                 ?>
             </td>
-            <td>"NOTA MEDIA"</td>
+            <td><?php echo proyectoDB::obtenerMediaProyecto($proyecto->getId())  ?></td>
             <td>
                 <?php
                     if ($pertenece){
                         echo "Perteneces a este proyecto no puedes calificarlo.";
+                        ?>
+                        </td>
+                        <?php
                     }else{
                             ?>
 
@@ -177,7 +174,7 @@ class usuarioHTML {
                                         <?php
                                     }
                                 ?>
-                                </option>    
+                                 
 
                             </select>
                         </td>
@@ -189,9 +186,9 @@ class usuarioHTML {
                         }
                     }
             ?>
-
+         </form>
         </tr>
-
+       
         <?php
     }
 

@@ -180,6 +180,64 @@ class proyectoDB extends conectarDB {
         return $usuarios;
         
     }
+    
+    
+    public static function insertarCalificacionUsuarioProyecto($login,$id,$calificacion){
+        
+        self::conectar();
+        $resultado=self::consultarUsuarioCalificacion($id, $login);
+        if (!$resultado){
+            $sql = "INSERT INTO calificaciones(loginUsuario,idProyecto,notaProyecto) VALUES('$login','$id','$calificacion')";
+            parent::$conexion->query($sql);
+            
+        }else{
+            self::actualizarNotaProyecto($calificacion, $login, $id);
+        }
+        $ok = parent::$conexion->errno;
+        parent::$conexion->close();
+        return $ok;
+    }
+    
+    
+    public static function obtenerMediaProyecto($id){
+        $suma=0;
+        $resultado;
+        self::conectar();
+        $sql = "SELECT * FROM calificaciones WHERE idProyecto='$id'";
+        $consulta = parent::$conexion->query($sql);
+        //Contamos cuantas filas han salido si ha salido 0 es false y si sale 1 es true
+        $numerocalificaciones = mysqli_num_rows($consulta);
+        if ($numerocalificaciones != 0){
+            $tupla = $consulta->fetch_array();
+            while ($tupla != NULL) {
+                $suma+=intval($tupla["notaProyecto"]);
+                $tupla = $consulta->fetch_array();
+            }
+            $resultado=$suma/$numerocalificaciones;
+        }else{
+            $resultado = "Ninguna calificacion";
+        }
+        parent::$conexion->close();
+        return $resultado;
+        
+    }
+    
+    private static function consultarUsuarioCalificacion($id,$usuario){
+        $resultado = false;
+        $sql = "SELECT * FROM calificaciones WHERE idProyecto='$id' AND loginUsuario='$usuario'";
+        $consulta = parent::$conexion->query($sql);
+        //Contamos cuantas filas
+        $valor = mysqli_num_rows($consulta);
+         if ($valor == 1) {
+            $resultado = true;
+        }
+        return $resultado;
+    }
+    
+     private static function actualizarNotaProyecto($calificacion,$usuario, $id) {
+        $sql = "UPDATE calificaciones SET notaProyecto = '$calificacion' WHERE loginUsuario = '$usuario' AND idProyecto = '$id'";
+        parent::$conexion->query($sql);
+    }
      
 
 }
