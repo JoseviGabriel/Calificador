@@ -25,7 +25,15 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
         <meta charset="UTF-8">
         <title></title>
         <style>
-            form{
+            body > form{
+                display: none;
+            }
+            
+            #formGestionEventos{
+                display: none;
+            }
+            
+            #formGestionProyectos{
                 display: none;
             }
         </style>
@@ -58,18 +66,8 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
                 <input type="button" name="accion" id="gestionProyectos" value="Gestion Proyectos"/>
             </article>
         </section>
-
-
-        <form id="formGestionEventos" action="controladores/controladorAdministrador.php" method="post">
-            <table>
-                <?php
-                require_once 'verEventos.php';
-                ?>
-
-            </table>
-        </form>
-
-
+        
+        
         <form id="formCrearProyecto" action="controladores/controladorAdministrador.php" method="post" enctype="multipart/form-data">
             <table>
                 <tr>
@@ -162,13 +160,22 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
             </table>
         </form>
 
-        <form id="formGestionProyectos" action="controladores/controladorAdministrador.php">
-            <table>
+        <!--<form  action="controladores/controladorAdministrador.php">-->
+            <table id="formGestionProyectos">
                 <?php
                 require_once "verProyectos.php";
                 ?>
             </table>
-        </form>
+        <!--</form>-->
+        
+        <!--<form  action="controladores/controladorAdministrador.php" method="post">-->
+            <table id="formGestionEventos">
+                <?php
+                require_once "verEventos.php";
+                ?>
+
+            </table>
+        <!--</form>-->
 
         <footer>
             Pie

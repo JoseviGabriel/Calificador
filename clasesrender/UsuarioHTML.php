@@ -128,7 +128,7 @@ class usuarioHTML {
     public static function vistaProyectoAlumnos($proyecto, $acciones, $indice){
         $pertenece=false;
         $usuarios=proyectoDB::obtenerUsuariosProyecto($proyecto->getId());
-        foreach ($usuarios as $usuario){            
+        foreach ($usuarios as $usuario){    
             if ($usuario==$_SESSION["usuario"]->getLogin()) $pertenece=true;
         }
         ?>

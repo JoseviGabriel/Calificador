@@ -16,11 +16,11 @@ and open the template in the editor.
         <section>
             <article>
                 Menu Administrador
-                <a href="administrador.php">Entra</a>
+                <a href="menuAdministrador.php">Entra</a>
             </article>
             <article>
                 Menu Usuarios
-                  <a href="usuarios.php">Entra</a>
+                  <a href="menuUsuarios.php">Entra</a>
             </article>
         </section>
         

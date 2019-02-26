@@ -1,5 +1,4 @@
 <?php
-
 require_once 'clases/Usuario.php';
 require_once 'clases/Proyecto.php';
 require_once 'clasesdb/usuarioDB.php';
@@ -27,13 +26,16 @@ $proyectos = proyectoDB::obtenerProyectos();
 
 foreach ($proyectos as $proyecto) {
     $acciones = [];
+    $form = new Formulario("controladores/controladorAdministrador.php");
     $cambiar = new Input("submit", "Cambiar Proyecto", "accion");
     $submit = new Input("submit", "Eliminar", "accion");
     $hidden = new Input("hidden", $proyecto->getId(), "idProyecto");
-    array_push($acciones, $submit);
-    array_push($acciones, $cambiar);
-    array_push($acciones, $hidden);
-
+    
+    $form->addInput($cambiar);
+    $form->addInput($submit);
+    $form->addInput($hidden);
+    array_push($acciones, $form);
+    
     echo UsuarioHTML::vistaProyectoAdmin($proyecto, $acciones, $proyecto->getId());
 }
 ?>
