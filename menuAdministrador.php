@@ -24,6 +24,7 @@ $usuariossinproyecto = usuarioDB::leerUsuariosSinProyecto();
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" type="text/css" href="estilos/index.css"/>
         <style>
             body > form{
                 display: none;

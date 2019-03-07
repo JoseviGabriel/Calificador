@@ -25,6 +25,8 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="estilos/index.css"/>
+
         <title></title>
     </head>
     <body>
