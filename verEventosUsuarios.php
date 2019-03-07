@@ -24,6 +24,6 @@ foreach ($eventos as $evento) {
     $form->addInput($hidden);
     array_push($acciones, $form);
 
-    echo UsuarioHTML::vistaEvento($evento, $acciones, $evento->getId(), NULL);
+    echo UsuarioHTML::vistaEventoUsuarios($evento, $acciones, $evento->getId(), NULL);
 }
 ?>

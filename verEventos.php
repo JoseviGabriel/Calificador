@@ -34,13 +34,11 @@ $proyectos = proyectoDB::obtenerProyectosSinEvento();
 
 foreach ($eventos as $evento) {
     $acciones = [];
-    $form = new Formulario("controladores/controladorAdministrador.php");
     $submit = new Input("submit", "Establecer Proyectos", "accion");
     $hidden = new Input("hidden", $evento->getId(), "idEvento");
     
-    $form->addInput($submit);
-    $form->addInput($hidden);
-    array_push($acciones, $form);
+    array_push($acciones, $submit);
+    array_push($acciones, $hidden);
 
     echo usuarioHTML::vistaEvento($evento, $acciones, $evento->getId(), $proyectos);
 }

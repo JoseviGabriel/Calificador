@@ -78,11 +78,10 @@ class eventoDB extends conectarDB {
         $sql = "SELECT proyectos FROM eventos WHERE id='$idEvento'";
         $consulta = parent::$conexion->query($sql);
         $tupla = $consulta->fetch_array();
-
         if ($tupla["proyectos"] == NULL) {
             $sql = "UPDATE eventos SET proyectos = '$cadena' WHERE id = '$idEvento'";
             $consulta = parent::$conexion->query($sql);
-            
+            echo $sql;
             foreach ($idProyectos as $idProyecto) {
                 $sql = "UPDATE proyectos SET evento = '$idEvento' WHERE id = '$idProyecto'";
                 $consulta = parent::$conexion->query($sql);

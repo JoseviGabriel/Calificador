@@ -13,12 +13,12 @@
 class usuarioHTML {
 
     public static function vistaTabular($usuario, $acciones, $indice) {
-        if($usuario->getActivo() == 1){
+        if ($usuario->getActivo() == 1) {
             $activo = "Si";
         } else {
             $activo = "No";
         }
-        
+
         $proyecto = proyectoDB::obtenerNombrePorId($usuario->getProyecto());
         ?> 
         <tr>
@@ -42,55 +42,107 @@ class usuarioHTML {
 
         <?php
     }
-
     
-    
-    public static function vistaEvento($evento, $acciones, $indice, $proyectos){
-        if($evento->getCalificacion() == 1){
+    public static function vistaEventoUsuarios($evento, $acciones, $indice, $proyectos) {
+        if ($evento->getCalificacion() == 1) {
             $calificacion = "Unica";
         } else {
             $calificacion = "Normal";
         }
-        
-        if($evento->getAbierto() == 1){
+
+        if ($evento->getAbierto() == 1) {
             $abierto = "Si";
         } else {
             $abierto = "No";
         }
-        ?> 
-        <tr>
+        ?>
+            <tr>
 
-            <td><?php echo $evento->getId() ?></td>
-            <td><?php echo $evento->getTitulo() ?></td>
-            <td><?php echo $evento->getDescripcion() ?></td>
-            <td><?php echo $evento->getFecha_apertura() ?></td>
-            <td><?php echo $evento->getFecha_cierre() ?></td>  
-            <td><?php echo $evento->getApartados() ?></td>  
-            <td><?php echo $calificacion ?></td>  
-            <td><?php echo $abierto ?></td> 
-            <?php if($proyectos != NULL){?>
-            <td>
-                <select multiple name="proyectos[]">
-                            <?php
-                            foreach ($proyectos as $proyecto) {
-                                echo self::escribirSelectProyectos($proyecto);
-                            }
-                            ?>
-                        </select>
-            </td>
-            <?php   }
-            foreach ($acciones as $accion) {
-                ?>
-                <td><?php echo $accion->dibujar($indice); ?></td>
-                <?php
+                <td><?php echo $evento->getId() ?></td>
+                <td><?php echo $evento->getTitulo() ?></td>
+                <td><?php echo $evento->getDescripcion() ?></td>
+                <td><?php echo $evento->getFecha_apertura() ?></td>
+                <td><?php echo $evento->getFecha_cierre() ?></td>  
+                <td><?php echo $evento->getApartados() ?></td>  
+                <td><?php echo $calificacion ?></td>  
+                <td><?php echo $abierto ?></td> 
+        <?php if ($proyectos != NULL) { ?>
+                    <td>
+                        <select multiple name="proyectos[]">
+            <?php
+            foreach ($proyectos as $proyecto) {
+                echo self::escribirSelectProyectos($proyecto);
             }
             ?>
+                        </select>
+                    </td>
+        <?php
+        }
+        if($abierto != "No"){
+            
+        foreach ($acciones as $accion) {
+            ?>
+                    <td><?php echo $accion->dibujar($indice); ?></td>
+                    <?php
+                }
+                ?>
 
-        </tr>
-       <?php
+            </tr>
+
+        <?php
+        }
     }
-    
-    public static function vistaProyectoAdmin($proyecto, $acciones, $indice){
+
+    public static function vistaEvento($evento, $acciones, $indice, $proyectos) {
+        if ($evento->getCalificacion() == 1) {
+            $calificacion = "Unica";
+        } else {
+            $calificacion = "Normal";
+        }
+
+        if ($evento->getAbierto() == 1) {
+            $abierto = "Si";
+        } else {
+            $abierto = "No";
+        }
+        ?>
+        <form action="controladores/controladorAdministrador.php" method="post">
+            <tr>
+
+                <td><?php echo $evento->getId() ?></td>
+                <td><?php echo $evento->getTitulo() ?></td>
+                <td><?php echo $evento->getDescripcion() ?></td>
+                <td><?php echo $evento->getFecha_apertura() ?></td>
+                <td><?php echo $evento->getFecha_cierre() ?></td>  
+                <td><?php echo $evento->getApartados() ?></td>  
+                <td><?php echo $calificacion ?></td>  
+                <td><?php echo $abierto ?></td> 
+        <?php if ($proyectos != NULL) { ?>
+                    <td>
+                        <select multiple name="proyectos[]">
+            <?php
+            foreach ($proyectos as $proyecto) {
+                echo self::escribirSelectProyectos($proyecto);
+            }
+            ?>
+                        </select>
+                    </td>
+        <?php
+        }
+        foreach ($acciones as $accion) {
+            ?>
+                    <td><?php echo $accion->dibujar($indice); ?></td>
+                    <?php
+                }
+                ?>
+
+            </tr>
+        </form>
+
+        <?php
+    }
+
+    public static function vistaProyectoAdmin($proyecto, $acciones, $indice) {
         ?>
         <tr>
 
@@ -110,85 +162,83 @@ class usuarioHTML {
 
         <?php
     }
-    
-    
-    public static function escribirSelects($usuario){
+
+    public static function escribirSelects($usuario) {
         ?>
-        <option><?php echo $usuario->getLogin();?></option>
+        <option><?php echo $usuario->getLogin(); ?></option>
         <?php
     }
-    
-    public static function escribirSelectProyectos($proyecto){
+
+    public static function escribirSelectProyectos($proyecto) {
         ?>
-        <option value="<?php echo $proyecto->getId(); ?>"><?php echo $proyecto->getTitulo();?></option>
+        <option value="<?php echo $proyecto->getId(); ?>"><?php echo $proyecto->getTitulo(); ?></option>
         <?php
-        
     }
-    
-    public static function vistaProyectoAlumnos($proyecto, $acciones, $indice){
-        $pertenece=false;
-        $usuarios=proyectoDB::obtenerUsuariosProyecto($proyecto->getId());
-        foreach ($usuarios as $usuario){    
-            if ($usuario==$_SESSION["usuario"]->getLogin()) $pertenece=true;
+
+    public static function vistaProyectoAlumnos($proyecto, $acciones, $indice) {
+        $pertenece = false;
+        $usuarios = proyectoDB::obtenerUsuariosProyecto($proyecto->getId());
+        foreach ($usuarios as $usuario) {
+            if ($usuario == $_SESSION["usuario"]->getLogin())
+                $pertenece = true;
         }
         ?>
-        
+
         <tr>
-            <form action="controladores/controladorUsuarios.php" >
+        <form action="controladores/controladorUsuarios.php" >
             <td><?php echo $proyecto->getId() ?></td>
             <td><?php echo $proyecto->getTitulo() ?></td>
             <td><?php echo $proyecto->getDescripcionbreve() ?></td>
             <td><?php echo $proyecto->getDescripciondetallada() ?></td>
             <td>    
-                <?php 
-                  if (count($proyecto->getDocumentos()) != 0 ){
-                      $titulo=$proyecto->getTitulo();
-                      
-                    foreach ($proyecto->getDocumentos() as $documento){
-                        $ruta= rawurlencode("proyectos/$titulo/$documento");
-                      echo "<a target='_blank' href=".$ruta.">".$documento."</a></br>";
-                    }
-                  }else{
-                      echo "Sin ficheros";
-                  }
+        <?php
+        if (count($proyecto->getDocumentos()) != 0) {
+            $titulo = $proyecto->getTitulo();
 
-                ?>
+            foreach ($proyecto->getDocumentos() as $documento) {
+                $ruta = rawurlencode("proyectos/$titulo/$documento");
+                echo "<a target='_blank' href=" . $ruta . ">" . $documento . "</a></br>";
+            }
+        } else {
+            echo "Sin ficheros";
+        }
+        ?>
             </td>
-            <td><?php echo proyectoDB::obtenerMediaProyecto($proyecto->getId())  ?></td>
+            <td><?php echo proyectoDB::obtenerMediaProyecto($proyecto->getId()) ?></td>
             <td>
-                <?php
-                    if ($pertenece){
-                        echo "Perteneces a este proyecto no puedes calificarlo.";
-                        ?>
-                        </td>
-                        <?php
-                    }else{
-                            ?>
-
-                            <select name="notacalificacion">
-
-                                <?php
-                                    for ($x=1;$x<11;$x++){
-                                        ?>
-                                        <option><?php echo $x; ?></option> 
-                                        <?php
-                                    }
-                                ?>
-                                 
-
-                            </select>
-                        </td>
-                        <?php
-                        foreach ($acciones as $accion) {
-                            ?>
-                            <td><?php echo $accion->dibujar($indice); ?></td>
-                            <?php
-                        }
-                    }
+        <?php
+        if ($pertenece) {
+            echo "Perteneces a este proyecto no puedes calificarlo.";
             ?>
-         </form>
+                </td>
+                    <?php
+                } else {
+                    ?>
+
+                <select name="notacalificacion">
+
+            <?php
+            for ($x = 1; $x < 11; $x++) {
+                ?>
+                        <option><?php echo $x; ?></option> 
+                        <?php
+                    }
+                    ?>
+
+
+                </select>
+            </td>
+            <?php
+            foreach ($acciones as $accion) {
+                ?>
+                <td><?php echo $accion->dibujar($indice); ?></td>
+                <?php
+            }
+        }
+        ?>
+        </form>
         </tr>
-       
+
         <?php
     }
 

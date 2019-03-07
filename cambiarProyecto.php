@@ -27,6 +27,7 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" type="text/css" href="estilos/index.css"/>
     </head>
     <body>
         <form id="formCrearProyecto" action="controladores/controladorAdministrador.php" method="post" enctype="multipart/form-data">

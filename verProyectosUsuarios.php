@@ -21,6 +21,7 @@ $proyectos = proyectoDB::obtenerProyectosPorEvento($idEvento);
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link rel="stylesheet" type="text/css" href="estilos/index.css"/>
     </head>
     <body>
         <table>
