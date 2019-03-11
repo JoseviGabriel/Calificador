@@ -1,0 +1,91 @@
+
+
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Menu Admin</title>
+    </head>
+    <body>
+
+        <form action="hotel" method="post">
+            <input type="submit" name="accion" value="Agregar Recepcionista"/>
+            <input type="submit" name="accion" value="Generar PDF"/>
+            <input type="submit" name="accion" value="Cerrar Sesion"/>
+        </form>
+        
+        <table id="table">
+            <tr>
+                <th>Login</th>
+                <th>Nombre</th>
+                <th>Apellidos</th>
+                <th>Telefono</th>
+                <th>Tipo</th>
+            </tr>
+            
+
+
+
+
+
+
+
+
+<form action="hotel" method="post">
+    <tr>
+        <td>alex</td>
+        <td>Alejandro</td>
+        <td>Moyano Aguilera</td>
+        <td>658956324</td>
+        <td>Cliente</td>
+        <td>
+            <input type="submit" name="accion" value="Eliminar"/></td>
+        <input type="hidden" name="login" value="alex"/>
+    </tr>
+</form>
+
+<form action="hotel" method="post">
+    <tr>
+        <td>ana</td>
+        <td>Ana Belen</td>
+        <td>Romero Perez</td>
+        <td>625395874</td>
+        <td>Cliente</td>
+        <td>
+            <input type="submit" name="accion" value="Eliminar"/></td>
+        <input type="hidden" name="login" value="ana"/>
+    </tr>
+</form>
+
+<form action="hotel" method="post">
+    <tr>
+        <td>maria</td>
+        <td>Maria</td>
+        <td>Lopez Cano</td>
+        <td>623658780</td>
+        <td>Recepcionista</td>
+        <td><input type="submit" name="accion" value="Editar"/>
+            <input type="submit" name="accion" value="Eliminar"/></td>
+        <input type="hidden" name="login" value="maria"/>
+    </tr>
+</form>
+
+<form action="hotel" method="post">
+    <tr>
+        <td>vanesa</td>
+        <td>Vanesa</td>
+        <td>Martinez Fernandez</td>
+        <td>632158945</td>
+        <td>Recepcionista</td>
+        <td><input type="submit" name="accion" value="Editar"/>
+            <input type="submit" name="accion" value="Eliminar"/></td>
+        <input type="hidden" name="login" value="vanesa"/>
+    </tr>
+</form>
+
+
+        </table>
+    </body>
+</html>
